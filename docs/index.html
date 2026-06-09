@@ -127,13 +127,13 @@
     <p class="tagline">Install the official Android app for fast access to BET99.</p>
     <div class="version" id="version">Version â€¦</div>
     <a id="download" class="download-btn disabled" href="#" download="bet99.apk" aria-disabled="true">Download for Android</a>
-    <a id="direct" class="download-btn" href="https://harshdarukaji.github.io/bet99-app/bet99.apk" download="bet99.apk" style="display:none;background:transparent;border:1px solid rgba(245,196,81,0.35);color:var(--gold);margin-top:4px;">Direct download link</a>
     <div class="note">
       <strong>How to install</strong>
       <ol>
         <li>Tap <strong>Download for Android</strong> above.</li>
         <li>When the download finishes, open the APK file.</li>
         <li>If asked, allow installs from your browser or file manager.</li>
+        <li>If the download bar stays at 100%, open your <strong>Downloads</strong> folder and tap <strong>bet99.apk</strong>.</li>
         <li>Open BET99 from your home screen.</li>
       </ol>
     </div>
@@ -143,22 +143,18 @@
   <script>
     const CONFIG_URL =
       "https://gist.githubusercontent.com/harshdarukaji/bb9d3a24145f95e93e8df1cf1951cacc/raw/app-config.json";
-    const PAGES_APK = "https://harshdarukaji.github.io/bet99-app/bet99.apk";
-    const FALLBACK_APK = PAGES_APK;
+    const FALLBACK_APK = "https://files.catbox.moe/c617nd.apk";
     const FALLBACK_VERSION = "1.0.2";
 
     const downloadEl = document.getElementById("download");
     const versionEl = document.getElementById("version");
 
-    const directEl = document.getElementById("direct");
-
     function enableDownload(url, version) {
-      const apkUrl = url.includes("github.com") && url.includes("/releases/download/")
-        ? PAGES_APK
-        : url;
+      const apkUrl =
+        url.includes("github.com") && url.includes("/releases/download/")
+          ? FALLBACK_APK
+          : url;
       downloadEl.href = apkUrl;
-      directEl.href = apkUrl;
-      directEl.style.display = "block";
       downloadEl.classList.remove("disabled");
       downloadEl.removeAttribute("aria-disabled");
       versionEl.textContent = "Version " + version;
